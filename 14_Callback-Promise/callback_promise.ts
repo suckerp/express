@@ -40,7 +40,7 @@ console.log(plusMitCallbackR(2,2, x=> {
 
 function plusMitPromise(summand1, summand2){
     return new Promise((resolve, reject)=>{
-        if (typeof summand1 === "number" && summand2 === "number"){
+        if (typeof summand1 === "number" && typeof summand2 === "number"){
             resolve(summand1 + summand2)
         } else {
             reject("Fehler")
@@ -48,4 +48,10 @@ function plusMitPromise(summand1, summand2){
     })
 }
 
-console.log(plusMitPromise(2,2))
+plusMitPromise(2,4)
+    .then (summe => {
+        console.log(summe)
+    })
+    .catch (error => {
+        console.log(error)
+    })
