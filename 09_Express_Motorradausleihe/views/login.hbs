@@ -1,0 +1,49 @@
+{{> navigation}}
+
+ <form action="login" method="POST">
+
+    <div class="container">
+
+        <div>
+            {{#if account_check}}
+                <div id="check">
+                    *User nicht vorhanden
+                </div>
+
+            {{/if}}
+        </div>
+
+        <!-- 
+        <div>
+            <label for="anrede"><b>Anrede</b></label>
+            <select name="anrede" class="browser-default" required>
+                <option value="" disabled selected>Anrede auswählen</option>
+                <option value="Frau">Frau</option>
+                <option value="Herr">Herr</option>
+            </select>
+        </div>
+        -->
+
+
+        <label for="name"><b>Username</b></label>
+        <input type="text" placeholder="Username eingeben" name="account" required>
+
+        <label for="pass"><b>Passwort</b></label>
+        <input type="password" placeholder="Passwort eingeben" name="password" required>
+
+        <label>
+                <input type="checkbox" name="remember"> 
+                <span>Daten speichern</span>
+        </label>
+        <br>
+        <button type="button" class="btn waves-effect waves-light" name="cancelbtn">
+            <i class="material-icons right">Abbrechen</i>
+        </button>
+        <button type="submit" class="btn waves-effect waves-light" name="signupbtn">
+            <i class="material-icons right">Login</i>
+        </button>
+    </div>
+
+</form> 
+
+{{> footer CopyrightText = "by Me"}}

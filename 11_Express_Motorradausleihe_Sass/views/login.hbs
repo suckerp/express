@@ -1,0 +1,39 @@
+{{> navigation}}
+
+<main>
+    <form action="login" method="POST">
+
+        <div class="container">
+
+            <div>
+                {{#if account_check}}
+                    <div id="check">
+                        *User nicht vorhanden
+                    </div>
+
+                {{/if}}
+            </div>
+            
+            <input class="input" type="text" placeholder="Username eingeben" name="account" required>
+
+            <br>
+            <input class="input" type="password" placeholder="Passwort eingeben" name="password" required>
+            <br>
+            <br>
+            <button type="button" class="btn waves-effect waves-light" name="cancelbtn">
+                <i class="material-icons right">Abbrechen</i>
+            </button>
+            <button type="submit" class="btn waves-effect waves-light" name="signupbtn">
+                <i class="material-icons right">Login</i>
+            </button>
+            <br>
+            <br>
+            <label>
+                <input type="checkbox" name="remember"> 
+                <span>Daten speichern</span>
+            </label>
+        </div>
+        <br>
+    </form> 
+</main>
+{{> footer CopyrightText = "by Me"}}

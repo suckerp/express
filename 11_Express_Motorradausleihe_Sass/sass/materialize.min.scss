@@ -1,0 +1,121 @@
+@charset "UTF-8";
+
+// Color
+@import "components/color-variables";
+@import "components/color-classes";
+
+// Variables;
+@import "components/variables";
+$primary-color: color("blue", "darken-3");
+
+$footer-bg-color: color("blue", "darken-3");
+
+// Reset
+@import "components/normalize";
+
+// components
+@import "components/global";
+@import "components/badges";
+@import "components/icons-material-design";
+@import "components/grid";
+@import "components/navbar";
+@import "components/typography";
+@import "components/transitions";
+@import "components/cards";
+@import "components/toast";
+@import "components/tabs";
+@import "components/tooltip";
+@import "components/buttons";
+@import "components/dropdown";
+@import "components/waves";
+@import "components/modal";
+@import "components/collapsible";
+@import "components/chips";
+@import "components/materialbox";
+@import "components/forms/forms";
+@import "components/table_of_contents";
+@import "components/sidenav";
+@import "components/preloader";
+@import "components/slider";
+@import "components/carousel";
+@import "components/tapTarget";
+@import "components/pulse";
+@import "components/datepicker";
+@import "components/timepicker";
+
+
+
+@mixin margin-and-padding($val){
+    margin: $val;
+    padding: $val;
+}
+
+#registrierung {
+    font-size: 30px;
+}
+
+.btn {
+    @extend .blue, .lighten-1;
+    margin-bottom: 20px;
+    max-width: 250px;
+
+  }
+
+
+body {
+    background-color: color("grey", "lighten-4");
+}
+
+select, input[type="text"], input[type="password"], input[type="date"], input[type="number"]  {
+    max-width: 250px;
+    background-color: color("blue", "lighten-5") !important;
+    margin-top: 10px !important;
+    margin-bottom: 20px !important;
+    border-color: $primary-color !important;
+    //padding: 10px !important;
+}
+
+::placeholder {
+    color: black
+}
+
+label {
+    display: inline-block;
+    min-width: 150px;
+    color: black;
+
+}
+
+
+.grid{
+    display: grid;
+    grid-template-columns: 350px 350px 350px;
+    justify-content: space-around;
+}
+
+.grid-container{
+    display: grid;
+    grid-template-columns: 350px 350px;
+    justify-content: space-around;
+}
+
+.no-spinners {
+    -moz-appearance: textfield;
+    -webkit-appearance: textfield;
+}
+
+tr:nth-child(even) {
+    background: color("blue", "lighten-5");
+}
+
+tr:nth-child(odd) {
+    background: color("grey", "lighten-4");
+}
+
+//Tabellen und Grid funktionieren nicht gut zusammen
+/*
+#customer-table{
+    display: inline-grid;
+    width: 200vw;
+    grid-template-columns: repeat(7, 50vw);
+}*/

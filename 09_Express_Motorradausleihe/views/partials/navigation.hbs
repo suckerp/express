@@ -1,0 +1,16 @@
+  <nav class="teal lighten-1">
+    <div class="nav-wrapper">
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li><a href="">Start</a></li>
+        <li><a href="Motorradliste">Motorradliste</a></li>
+        <li><a href="Kundenliste">Kundenliste</a></li>
+        {{#if account}}
+          <li><a href="account_detail">Eingeloggt als {{account}} </a></li>
+          <li><a href="logout">Ausloggen</a></li>
+        {{else}}
+          <li><a href="account.html">Account erstellen</a></li>
+          <li><a href="login">Einloggen</a></li>
+        {{/if}}
+      </ul>
+    </div>
+  </nav>

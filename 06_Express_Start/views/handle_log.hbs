@@ -1,0 +1,16 @@
+<table id="table">
+    <tr>
+    <th>Vorname</th>
+    <th>Nachname</th>
+    <th>Login</th>
+    <th>Logout</th>
+    </tr>
+    {{#each person}}
+    <tr>
+        <td> {{ vorname }} </td>
+        <td> {{ nachname }} </td>
+        <td> {{ login }} </td>
+        <td> {{ logout }} </td>
+    </tr>
+    {{/each}}
+</table>

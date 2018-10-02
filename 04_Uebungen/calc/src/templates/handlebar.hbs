@@ -1,0 +1,13 @@
+
+{{!-- {{ 
+aus der buttonList im Script werden nach und nach die Buttons aufgebaut und 
+erhalten auch gleich eine id und werden entsprechend ihrer Funktion einer Klasse zugewiesen
+
+wird alles in der buttonList im Script vordefiniert und hier entsprechend eingetragen
+}} --}}
+
+
+{{#each buttonList}}
+    <button id="{{id}}" value="{{zeichen}}" class="{{klasse}}">{{zeichen}}</button>
+{{/each}}
+

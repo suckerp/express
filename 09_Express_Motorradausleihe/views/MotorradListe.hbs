@@ -1,0 +1,51 @@
+{{> navigation kunde}}
+
+{{#*inline "myPartial"}}
+              <td> {{ M_Hersteller }} </td>
+              <td> {{ M_Modell }} </td>
+              <td> {{ M_Kennzeichen }} </td>
+              <td> {{ M_Leistung }} </td>
+              <td> {{ M_KMStand }} </td>
+              <td> {{ M_Baujahr }} </td>
+              <td> {{ M_TUEV }} </td>
+{{/inline}}
+
+
+<main>
+  
+  <table id="table">
+    <tr>
+    <th>Hersteller</th>
+    <th>Modell</th>
+    <th>Kennzeichen</th>
+    <th>Leistung</th>
+    <th>KM-Stand</th>
+    <th>Baujahr</th>
+    <th>TÜV</th>
+    <th>Ausleihe</th>
+    </tr>
+    {{#if login_check}}
+        {{#each MotorradListe}}
+          <tr>
+              {{> myPartial }}
+              <!--<td> <a href="leihhistorie/{{ M_ID }}" type="button">Ausleihen</a> </td>-->
+            <td>
+                <a type="button" class="btn waves-effect waves-light" name="leihbtn" href="leihhistorie/{{ M_ID }}">
+                <i class="material-icons right">Ausleihen</i>
+                </a>
+            </td>
+          </tr>
+        {{/each}}
+    {{else}}
+        {{#each MotorradListe}}
+        <tr>
+            {{> myPartial }}
+        </tr>
+        {{/each}}
+    {{/if}}
+
+    
+  </table>
+</main>   
+
+{{> footer CopyrightText = "by Me"}}

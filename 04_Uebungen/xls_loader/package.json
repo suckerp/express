@@ -1,0 +1,26 @@
+{
+  "name": "webpack-start",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "handlebars": "^4.0.11"
+  },
+  "devDependencies": {
+    "@types/handlebars": "^4.0.39",
+    "@types/node": "^10.9.4",
+    "@types/webpack": "^4.4.11",
+    "handlebars-loader": "^1.7.0",
+    "ts-loader": "^4.5.0",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.0.3",
+    "val-loader": "^1.1.1",
+    "webpack-xlsx-loader": "^1.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

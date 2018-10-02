@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <base href="http://localhost:3000">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Account erstellen</title>
+     <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    
+</head>
+
+<body>
+    <nav class="teal lighten-1">
+        <div class="nav-wrapper">
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+            <li><a href="">Start</a></li>
+            <li><a href="Motorradliste">Motorradliste</a></li>
+            <li><a href="Kundenliste">Kundenliste</a></li>
+            <li><a href="account.html">Account erstellen</a></li>
+            <li><a href="login">Einloggen</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <form action="account_erstellen" method="POST">
+        <div class="container">
+            <h1>Account erstellen</h1>
+            <p>Bitte füllen Sie dieses Formular aus, um einen Account zu erstellen.</p>
+            <hr>
+
+            <label for="account"><b>Username</b></label>
+            <input type="text" placeholder="Username eingeben" name="account" required>
+            <label for="password"><b>Passwort</b></label>
+            <input type="password" placeholder="Passwort eingeben" name="password" required>
+            <label for="password_wdh"><b>Passwort wiederholen</b></label>
+            <input type="password" placeholder="Passwort wiederholen" name="password_wdh" required>
+            
+            <div>
+                <label for="anrede"><b>Anrede</b></label>
+                <select name="anrede" class="browser-default" required>
+                    <option value="" disabled selected>Anrede auswählen</option>
+                    <option value="Frau">Frau</option>
+                    <option value="Herr">Herr</option>
+                </select>
+            </div>
+
+            <label for="kname"><b>Kundenname</b></label>
+            <input type="text" placeholder="Kundenname eingeben" name="kname" required>
+
+            <label for="plz"><b>Postleitzahl</b></label>
+            <input type="number" placeholder="Postleitzahl eingeben" name="plz" required>
+
+            <label for="strasse"><b>Straße</b></label>
+            <input type="text" placeholder="Straße eingeben" name="strasse" required>
+            <label for="ort"><b>Wohnort</b></label>
+            <input type="text" placeholder="Wohnort eingeben" name="ort" required>
+            <label for="gebdat"><b>Geburtsdatum</b></label>
+            <input type="date" placeholder="Geburtsdatum eingeben" name="gebdat" required>
+            
+            <br>
+            <br>
+            <div>
+                <button type="button" class="btn waves-effect waves-light" name="cancelbtn">
+                    <i class="material-icons right">Abbrechen</i>
+                </button>
+                <button type="submit" class="btn waves-effect waves-light" name="signupbtn">
+                    <i class="material-icons right">Account erstellen</i>
+                </button>
+                <label>
+                    <input type="checkbox" name="remember"> 
+                    <span>Daten speichern</span>
+                </label>
+            </div>
+
+        </div>
+    </form>
+    <footer class="page-footer teal lighten-1">
+        <div class="footer-copyright">
+            <div class="container">
+                © 2014 Copyright {{CopyrightText}}
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Liste vom Server zum Client</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- materialize icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+
+    <!-- materialize JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
+
+</head>
+<body>
+
+    <div id="output"></div>
+
+    <label for="Posten">Posten</label>
+    <input type="text" id="posten" class="input" value="">
+
+    <label for="Menge">Menge</label>
+    <input type="number" id="menge" class="input" value="0">
+    
+    <label for="Preis">Preis</label>
+    <input type="number" id="preis" class="input" value="0">
+    
+
+    <button id="sendButton" class="btn waves-effect waves-d ">
+        <i class="material-icons">send</i>
+    </button>
+
+
+    <script src="js/bundle.js"></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+{{> navigation kunde }}
+
+<main>
+  <table id="table">
+    <tr>
+    <th>Kundennumer</th>
+    <th>Anrede</th>
+    <th>Name</th>
+    <th>Straße</th>
+    <th>Postleitzahl</th>
+    <th>Ort</th>
+    <th>Geburtsdatum</th>
+    </tr>
+    {{#each KundenListe}}
+    <tr>
+        <td> {{ K_ID }} </td>
+        <td> {{ K_Anrede }} </td>
+        <td> {{ K_Name }} </td>
+        <td> {{ K_Strasse }} </td>
+        <td> {{ K_PLZ }} </td>
+        <td> {{ K_Ort }} </td>
+        <td> {{ K_GebDat }} </td>
+    </tr>
+    {{/each}}
+  </table>
+
+</main>   
+
+{{> footer CopyrightText = "by Me"}}

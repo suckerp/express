@@ -1,0 +1,37 @@
+<table id="table">
+    <tr>
+    <th>Posten</th>
+    <th>Menge</th>
+    <th>Preis</th>
+    <th>Gesamt</th>
+    </tr>
+    {{#each liste}}
+        <tr>
+            <td> {{ posten }} </td>
+            <td> {{ menge }} </td>
+            <td> {{ preis }} </td>
+            <td> {{ summe }} </td>
+        </tr>
+    {{/each}}
+    <tr>
+            <td id="ges"> GESAMT </td>
+            <td> </td>
+            <td> </td>
+            <td id="ges"> {{ gesamt }} </td>
+    </tr>
+</table>
+
+<form action="/liste_exp2" method="POST">
+    <label for="Posten">Posten</label>
+    <input type="text" name="posten" class="input" value="">
+    <br>
+    <label for="Menge">Menge</label>
+    <input type="number" name="menge" class="input" value="0">
+    <br>
+    <label for="Preis">Preis</label>
+    <input type="number" name="preis" class="input" value="0">
+    <br>
+    <button id="sendButton" class="btn waves-effect waves-d ">
+    <i class="material-icons">send</i>
+    </button>
+</form>

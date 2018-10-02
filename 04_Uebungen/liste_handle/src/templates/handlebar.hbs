@@ -1,0 +1,22 @@
+<table id="table">
+    <tr>
+    <th>Posten</th>
+    <th>Menge</th>
+    <th>Preis</th>
+    <th>Gesamt</th>
+    </tr>
+    {{#each liste}}
+        <tr>
+            <td> {{ posten }} </td>
+            <td> {{ menge }} </td>
+            <td> {{ preis }} </td>
+            <td> {{ summe }} </td>
+        </tr>
+    {{/each}}
+    <tr>
+            <td id="ges"> GESAMT </td>
+            <td> </td>
+            <td> </td>
+            <td id="ges"> {{ gesamt }} </td>
+    </tr>
+</table>

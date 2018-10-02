@@ -1,0 +1,69 @@
+{{> navigation kunde}}
+
+<main>
+  <table id="table">
+    <tr>
+    <th>Hersteller</th>
+    <th>Modell</th>
+    <th>Baujahr</th>
+    <th>Ausleihebeginn</th>
+    <th>Ausleiheende</th>
+    <th>Kilometer</th>
+    </tr>
+    {{#each MotorradListe}}
+    <tr>
+        <td> {{ M_Hersteller }} </td>
+        <td> {{ M_Modell }} </td>
+        <td> {{ M_Baujahr }} </td>
+        <td> {{ AusleiheBeginn }} </td>
+        <td> {{ AusleiheEnde }} </td>
+        <td> {{ Kilometer }} </td>
+    </tr>
+    {{/each}}
+    
+  </table>
+  <div>
+    {{#if leih_check}}
+      <div id="check">
+          *Leihe nicht möglich. Bitte Ausleihdaten ändern
+      </div>
+    {{/if}}
+  </div>
+  <form action="ausleihen" method="POST">
+    <div>
+      <!--
+      <label for="leihbeginn"><b>Beginn der Leihe</b></label>
+      <input type="date" placeholder="Beginn der Leihe" name="leihbeginn" class="datepicker1" required>
+      
+      <label for="leihe"><b>Ende der Leihe</b></label>
+      <input type="date" placeholder="Ende der Leihe" name="leihe" class="datepicker1" required>
+      -->
+
+      <label for="leihbeginn"><b>Beginn der Leihe</b></label>
+      <input type="text" placeholder="Beginn der Leihe" name="leihbeginn" class="datepicker" required>
+
+      <label for="leihende"><b>Ende der Leihe</b></label>
+      <input type="text" placeholder="Ende der Leihe" name="leihende" class="datepicker" required>
+
+      <label for="km"><b>Kilometer</b></label>
+      <input type="number" placeholder="Kilometer" name="km" required>
+
+    </div>
+  
+    <a type="button" class="btn waves-effect waves-light" name="cancelbtn"  href="MotorradListe">
+      <i class="material-icons right">Zurück</i>
+    </a>
+
+    <button type="submit" class="btn waves-effect waves-light" name="signupbtn">
+      <i class="material-icons right">Abschicken</i>
+    </button>
+  </form>
+  <script>
+    var dates = {{{dates}}};
+  </script>
+  <script src="test.js"></script>
+</main>   
+
+{{> footer CopyrightText = "by Me"}}
+
+
