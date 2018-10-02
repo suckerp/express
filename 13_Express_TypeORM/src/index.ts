@@ -1,57 +1,29 @@
 import "reflect-metadata";
-import {createConnection} from "typeorm";
-import {User} from "./entity/User";
+import { createConnection } from "typeorm"
 import express = require('express')
-import { Post } from "./entity/Post";
-import { connect } from "tls";
-import { SSL_OP_NETSCAPE_REUSE_CIPHER_CHANGE_BUG } from "constants";
+
+import { PostRepository } from './model/repository/post-repository'
+import { PostController } from './controller/post-controller'
+
+import { UserRepository } from './model/repository/user-repository'
+import { UserController } from './controller/user-controller'
+
 
 createConnection().then(connection => {
 
     const app = express()
 
-    app.get('/posts/add/:userID/:titel/:text', (req,res) => {
-        const {userID, titel, text} = req.params
+    //hier werden Controller und Model wieder zusammengesetzt
+    const postRepository = new PostRepository()
+    //Dependency Injection
+    const postController = new PostController(postRepository)
 
-        const post = new Post()
-        post.text = text
-        post.titel = titel
-        connection.getRepository(Post).save(post)
-            .then (post => connection.getRepository(User).findOne({id:userID}))
-            .then(user => {
-                console.log(user)
-                if (user.posts){
-                    user.posts = [...user.posts, post]
-                    console.log("if")
-                }
-                else {
-                    user.posts = [post]
-                    console.log("else")
-                }
-                return connection.manager.save(user)
-            })
-            .then(user => {
-                console.log(user)
-                res.json(user)
-            })
-            .catch(error => {
-                console.log(error)
-                res.json(error)
-            })
-    })
+    const userRepository = new UserRepository()
+    const userController = new UserController(userRepository)
+    
+    app.get('/posts/add/:userID/:title/:text', postController.createPost)
 
-    app.get('/user', (req,res)=>{
-        connection.getRepository(User).find()
-        .then(user => {
-            console.log(user)
-            res.json(user)
-        })
-        .catch(error => {
-            console.log(error)
-            res.json(error)
-        })
-    })
-
+    app.get('/user', userController.getUserPosts)
 
     app.listen(3000)
 

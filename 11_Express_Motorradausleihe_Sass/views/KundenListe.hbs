@@ -3,24 +3,61 @@
 <main>
   <table id="customer-table">
     <tr>
-    <th>Kundennumer</th>
+    <th>Account</th>
     <th>Anrede</th>
     <th>Name</th>
     <th>Straße</th>
     <th>Postleitzahl</th>
     <th>Ort</th>
     <th>Geburtsdatum</th>
+    <th>Daten Ändern</th>
     </tr>
     {{#each KundenListe}}
     <tr>
-        <td> {{ K_ID }} </td>
+        <td> {{ K_ACCOUNT }} </td>
         <td> {{ K_Anrede }} </td>
         <td> {{ K_Name }} </td>
         <td> {{ K_Strasse }} </td>
         <td> {{ K_PLZ }} </td>
         <td> {{ K_Ort }} </td>
         <td> {{ K_GebDat }} </td>
+        <td>
+            <a type="button" class="btn waves-effect waves-light" name="ändernbtn" id="ändernbtn" href="daten_ändern/{{ K_ID }}">
+            Daten Ändern
+            </a>
+        </td>
     </tr>
+        <td>
+          <input type="text" value=" {{ K_ACCOUNT }} " name="account" required>
+        </td>
+        <td>
+          <select name="anrede" class="browser-default" required>
+            {{#if {{ frau }} }}
+            <option selected value="Frau">Frau</option>
+            <option value="Herr">Herr</option>
+            {{#else}}
+            <option value="Frau">Frau</option>
+            <option selected value="Herr">Herr</option>
+            {{/if}}
+          </select> 
+        </td>
+        <td> 
+          <input type="text" value="{{ K_Name }} " name="kname" required>
+        </td>
+        <td>
+          <input type="text" value=" {{ K_Strasse }} " name="strasse" required>
+        </td>
+        <td>
+          <input class="no-spinners" type="text" value=" {{ K_PLZ }} " name="plz" min="00000" max="99999" pattern="[0-9]{5,5}" inputmode="numeric" required>
+        </td>
+        <td>
+          <input type="text" value=" {{ K_Ort }} " name="ort" required>
+        </td>
+        <td>
+          <input type="date" value=" {{ K_GebDat }} " name="gebdat" required>
+        </td>
+
+    
     {{/each}}
   </table>
 

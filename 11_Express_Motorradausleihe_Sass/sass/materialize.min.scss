@@ -7,8 +7,9 @@
 // Variables;
 @import "components/variables";
 $primary-color: color("blue", "darken-3");
-
 $footer-bg-color: color("blue", "darken-3");
+//$button-icon-font-size: 1.0rem !important;
+
 
 // Reset
 @import "components/normalize";
@@ -58,9 +59,14 @@ $footer-bg-color: color("blue", "darken-3");
     @extend .blue, .lighten-1;
     margin-bottom: 20px;
     max-width: 250px;
+    font-size: 1.3rem;
+}
 
-  }
-
+#ändernbtn {
+    max-width: 250px;
+    margin: 0px;
+    font-size: 1.3rem;
+}
 
 body {
     background-color: color("grey", "lighten-4");
@@ -111,6 +117,7 @@ tr:nth-child(even) {
 tr:nth-child(odd) {
     background: color("grey", "lighten-4");
 }
+
 
 //Tabellen und Grid funktionieren nicht gut zusammen
 /*

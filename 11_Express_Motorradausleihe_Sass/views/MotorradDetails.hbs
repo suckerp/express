@@ -31,13 +31,6 @@
   </div>
   <form action="ausleihen" method="POST">
     <div>
-      <!--
-      <label for="leihbeginn"><b>Beginn der Leihe</b></label>
-      <input type="date" placeholder="Beginn der Leihe" name="leihbeginn" class="datepicker1" required>
-      
-      <label for="leihe"><b>Ende der Leihe</b></label>
-      <input type="date" placeholder="Ende der Leihe" name="leihe" class="datepicker1" required>
-      -->
 
       <label for="leihbeginn"><b>Beginn der Leihe</b></label>
       <input type="text" placeholder="Beginn der Leihe" name="leihbeginn" class="datepicker" required>
@@ -46,18 +39,19 @@
       <input type="text" placeholder="Ende der Leihe" name="leihende" class="datepicker" required>
 
       <label for="km"><b>Kilometer</b></label>
-      <input type="number" placeholder="Kilometer" name="km" required>
+      <input class="no-spinners" type="text" placeholder="Kilometer" name="km" min="00000" pattern="[0-9]" inputmode="numeric" required>
 
     </div>
   
     <a type="button" class="btn waves-effect waves-light" name="cancelbtn"  href="MotorradListe">
-      <i class="material-icons right">Zurück</i>
+      Zurück
     </a>
 
     <button type="submit" class="btn waves-effect waves-light" name="signupbtn">
-      <i class="material-icons right">Abschicken</i>
+      Abschicken
     </button>
   </form>
+
   <script>
     var dates = {{{dates}}};
   </script>

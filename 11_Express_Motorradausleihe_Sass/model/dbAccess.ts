@@ -30,7 +30,6 @@ export class MotorradAusleiheDB {
         timezone: 'Z'
     })
 
-    //Promise Version
     getAllMotorcycles(){
         const sqlString = 'select * from motorraeder'
         return new Promise<any[]>((resolve, reject)=>{
@@ -42,39 +41,6 @@ export class MotorradAusleiheDB {
             })
         })
     }
-
-    //Callback Version
-    /*getAllMotorcycles(errorFunc: (e:any)=> void, successFunc:(result:any)=> void){
-        const sqlString = 'select * from motorraeder'
-        this._connection.query(sqlString, (error, result:any[])=> {
-            if (error)
-                errorFunc(error)
-            else {
-                successFunc(result)
-            }
-        })
-    }*/
-    /*
-    getMotorcycleDetail(mid:number){
-        const sqlString = `
-        select * from ausleihe 
-        join kunden on ausleihe.K_ID = kunden.K_ID 
-        join motorraeder on ausleihe.M_ID = motorraeder.M_ID 
-        where motorraeder.m_id = ?
-        `
-        //? ist der platzhalter, der dann im query hinter dem sqlString der Reihenfolge nach eingetragen werden
-        return new Promise<any[]>((resolve, reject)=>{
-            this._connection.query(sqlString,mid, (error, results:any[]) => {
-                if(error){
-                    console.log(error)
-                    
-                    reject(error)
-                }
-                else
-                    resolve(results)
-            })
-        })
-    }*/
 
     getMotorcycleDetail(mid:number, kid:number){
         const sqlString = `
@@ -159,18 +125,6 @@ export class MotorradAusleiheDB {
             })
         })
     }
-
-    /*
-    getAllCustomers(errorFunc: (e:any)=> void, successFunc:(result:customer[])=> void){
-        const sqlString = 'select * from kunden'
-        this._connection.query(sqlString, (error, result:customer[])=> {
-            if (error)
-                errorFunc(error)
-            else {
-                successFunc(result)
-            }
-        })
-    }*/
 
     getCustomer(name:string, pass:string){
         const sqlString = `

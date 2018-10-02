@@ -85,18 +85,6 @@ router.get('/kundenliste', authenticationGuard,(req,res)=>{
         .catch(error=>{
             res.json(error)
         })
-
-        //Callback Version
-        /*error=>{
-            res.json(error)
-        },
-        (results:any[]) => {
-            const KundenListe = results.map(formatKundenliste)
-            res.render('KundenListe',{
-                kunde: session.kunde, 
-                KundenListe})
-        }*/
-   
 })
 
 
@@ -109,6 +97,7 @@ router.post('/login',(req,res)=>{
     const session = req.session as Express.Session
     //bei Daten Speichern wird die Session für 1 Woche gespeichert (1000*3600*24*7)
     const dauer = 604800000
+    let frau:boolean
     db.getCustomer(req.body.account, req.body.password)
         .then(results => {
             if (results.length) {
@@ -121,6 +110,12 @@ router.post('/login',(req,res)=>{
                     session.cookie.maxAge = dauer
                 }
                 const KundenListe = results.map(formatKundenliste)
+                if (KundenListe[0].Anrede == "Frau"){
+                    KundenListe[0].frau = true
+                } else{
+                    KundenListe[0].frau = false
+                }
+
                 res.render('KundenListe',{
                     kunde: session.kunde, 
                     KundenListe})

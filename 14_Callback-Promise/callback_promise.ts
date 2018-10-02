@@ -5,7 +5,8 @@ function plusSynchron(summand1:number, summand2:number){
 }
 console.log(plusSynchron(2,2))
 
-// Asynchrone normale Addition 
+//Asynchrone normale Addition 
+//funktioniert nicht
 function plusTimeoutR(summand1:number, summand2:number){
     let summe
     setTimeout(() => {
@@ -39,7 +40,8 @@ console.log(plusMitCallbackR(2,2, x=> {
 
 
 function plusMitPromise(summand1, summand2){
-    return new Promise((resolve, reject)=>{
+    //<number> definiert, dass das Promise eine number ist, kann auch string, boolean o. any sein bzw. weggelassen werden
+    return new Promise<number>((resolve, reject)=>{
         if (typeof summand1 === "number" && typeof summand2 === "number"){
             resolve(summand1 + summand2)
         } else {
@@ -47,7 +49,6 @@ function plusMitPromise(summand1, summand2){
         }
     })
 }
-
 plusMitPromise(2,4)
     .then (summe => {
         console.log(summe)
@@ -55,3 +56,90 @@ plusMitPromise(2,4)
     .catch (error => {
         console.log(error)
     })
+
+
+//undefined für die Fallunterscheidung bei der Auswertung
+//der 1. Fall ist immer der Fehlerfall, der 2. Fall ist der Ergebnisfall
+function plusMitCallbackUndError(summand1, summand2, callback:Function){
+    if (typeof summand1 === "number" && typeof summand2 === "number"){
+        //der 1. Fall ist immer der Fehlerfall, der 2. Fall ist der Ergebnisfall
+        callback(undefined, summand1 + summand2)
+    } else {
+        //der 1. Fall ist immer der Fehlerfall, der 2. Fall ist der Ergebnisfall
+        callback("Fehler", undefined)
+    }
+}
+
+console.log(plusMitCallbackUndError(2,2, (error, result) => {
+    console.log(error)
+    console.log(result)
+
+    if (error){
+        console.log(error)
+    } else{
+        plusMitCallbackUndError(result,2, (error, result) => {
+            if (error){
+                console.log(error)
+            } else{
+                plusMitCallbackUndError(result,2, (error, result) => {
+                    if (error){
+                        console.log(error)
+                    } else{
+                        plusMitCallbackUndError(result,2, (error, result) => {
+                            if (error){
+                                console.log(error)
+                            } else{
+                                plusMitCallbackUndError(result,2, (error, result) => {
+                                    if (error){
+                                        console.log(error)
+                                    } else{
+                                        console.log(result)
+                                    }
+                                })
+                            }
+                        })
+                    }
+                })
+            }
+        })
+    }
+}))
+
+
+plusMitPromise(2,2)
+    .then(result => plusMitPromise(result,2))
+    .then(result => plusMitPromise(result,2))
+    .then(result => plusMitPromise(result,2))
+    .then(result => plusMitPromise(result,2))
+    .then(result => {
+        plusMitPromise(result,2)
+        console.log(result)
+    })
+    .catch(e => console.log(e))
+    .finally(()=> {
+        console.log("Fertig")
+    })
+
+async function berechne(){
+    //Abfangen eines möglichen Fehlers
+    try{
+        //await macht aus dem Promise die number
+        let summe =  await plusMitPromise(2,2)
+        summe =  await plusMitPromise(summe,"2")
+        summe =  await plusMitPromise(summe,2)
+        summe =  await plusMitPromise(summe,2)
+        summe =  await plusMitPromise(summe,2)
+        console.log(summe)
+    } catch (e) {
+        e
+    } finally {
+        console.log("Fertig")
+    }
+}
+
+berechne()
+
+//Alternativ ohne try-catch den Promise-Fehler mit catch abfangen
+//berechne().catch(e=>{console.log(e)})
+
+//Asynch Await + Try-Catch und die normale Promise-Funktion mit then / catch sind genau das gleiche, nur andere schreibweise

@@ -28,11 +28,8 @@
         {{#each MotorradListe}}
           <tr>
               {{> myPartial }}
-              <!--<td> <a href="leihhistorie/{{ M_ID }}" type="button">Ausleihen</a> </td>-->
             <td>
-                <a type="button" class="btn waves-effect waves-light" name="leihbtn" href="leihhistorie/{{ M_ID }}">
-                <i class="material-icons right">Ausleihen</i>
-                </a>
+                <a type="button" class="btn waves-effect waves-light" name="leihbtn" href="ausleihen/{{ M_ID }}">Ausleihen</a>
             </td>
           </tr>
         {{/each}}

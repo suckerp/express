@@ -88,8 +88,8 @@ router.get('/MotorradListe',(req,res)=>{
         })
     })
 
-//Leihhistorie des gewählten Motorrads für den eingeloggten User anzeigen, MID ist die Motorrad ID
-router.get('/leihhistorie/:MID',(req,res)=>{
+//Ausleihseite des gewählten Motorrads für den eingeloggten User anzeigen, MID ist die Motorrad ID
+router.get('/ausleihen/:MID',(req,res)=>{
     const session = req.session as Express.Session
     let leihdaten:leihdaten[] = []
 
@@ -188,7 +188,7 @@ router.post('/ausleihen',(req,res)=>{
                     .then(results => {
                         //leih_check für die Ausgabe der Fehlermeldung ist falsch
                         session.kunde.leih_check = false
-                        res.redirect("/leihhistorie/"+session.kunde.mid)
+                        res.redirect("/ausleihen/"+session.kunde.mid)
                     })
                     .catch(error => {
                         res.json(error)
@@ -196,7 +196,7 @@ router.post('/ausleihen',(req,res)=>{
             } else {
                 //hier wird dann die Fehlermeldung mit angezeigt
                 session.kunde.leih_check = true
-                res.redirect("/leihhistorie/"+session.kunde.mid)
+                res.redirect("/ausleihen/"+session.kunde.mid)
             }
         })
         .catch(error => {

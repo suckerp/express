@@ -1,6 +1,5 @@
 import { create } from 'express-handlebars'
 import express = require('express')
-//import cookieParser = require('cookie-parser')
 import session = require('express-session')
 import sass = require('node-sass-middleware')
 
@@ -58,42 +57,6 @@ app.get('/', (req,res)=>{
         kunde: session.kunde})
 })
 
-//mit Parameter ist er dann signed, der Schlüssel sollte sicher gewählt werden
-/*app.use(cookieParser("test"))
-
-
-app.get('/cookie',(req,res)=>{
-    res.cookie('meincookie', "test", {
-        expires: new Date(Date.now()+90000000)
-    })
-    res.cookie('meincookie2', "test", {
-        expires: new Date(Date.now()+90000000),
-        signed: true,
-        httpOnly: true
-    })
-    console.log(req.headers)
-    console.log(req.cookies)
-    console.log(req.signedCookies)
-    //res.clearCookie("meincookie")
-    res.send("Cookies")
-})
-
-app.get('/sessionSetzen',(req,res)=>{
-        const session = req.session as Express.Session
-        session.name = "meinName"
-        res.send(`
-            <h2>Session gesetzt</h2>
-            <a href="sessionLesen">Weiter</a>
-        `
-        
-        )
-})
-
-app.get('/sessionLesen',(req,res)=>{
-
-    const session = req.session as Express.Session
-    res.json(session)
-})*/
 
 //########################################################################
 //   Starten der Datenverarbeitung an port 3000
