@@ -110,7 +110,10 @@ router.post('/login',(req,res)=>{
                     session.cookie.maxAge = dauer
                 }
                 const KundenListe = results.map(formatKundenliste)
-                if (KundenListe[0].Anrede == "Frau"){
+                //console.log(JSON.stringify(results[0].K_GebDat.toDateString()))
+                //let temp:Date[] = []
+                //temp.push(new Date(results[0].K_GebDat))
+                if (KundenListe[0].K_Anrede == "Frau"){
                     KundenListe[0].frau = true
                 } else{
                     KundenListe[0].frau = false
@@ -118,7 +121,11 @@ router.post('/login',(req,res)=>{
 
                 res.render('KundenListe',{
                     kunde: session.kunde, 
-                    KundenListe})
+                    KundenListe,
+                    dates:JSON.stringify(
+                        results[0].K_GebDat.toDateString()
+                        //temp.map(x => x.toDateString())
+                    )})
             }
             else{
                 res.render('login', {account_check: true})

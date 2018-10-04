@@ -92,6 +92,10 @@ label {
 
 }
 
+.birthday{
+    align-content: left !important;
+}
+
 
 .grid{
     display: grid;
@@ -118,6 +122,9 @@ tr:nth-child(odd) {
     background: color("grey", "lighten-4");
 }
 
+tr {
+    max-width: auto;
+}
 
 //Tabellen und Grid funktionieren nicht gut zusammen
 /*

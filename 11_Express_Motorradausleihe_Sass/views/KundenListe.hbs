@@ -27,22 +27,23 @@
             </a>
         </td>
     </tr>
+    <tr>
         <td>
           <input type="text" value=" {{ K_ACCOUNT }} " name="account" required>
         </td>
         <td>
           <select name="anrede" class="browser-default" required>
-            {{#if {{ frau }} }}
+            {{#if frau }}
             <option selected value="Frau">Frau</option>
             <option value="Herr">Herr</option>
-            {{#else}}
+            {{else}}
             <option value="Frau">Frau</option>
             <option selected value="Herr">Herr</option>
             {{/if}}
           </select> 
         </td>
         <td> 
-          <input type="text" value="{{ K_Name }} " name="kname" required>
+          <input type="text" value=" {{ K_Name }} " name="kname" required>
         </td>
         <td>
           <input type="text" value=" {{ K_Strasse }} " name="strasse" required>
@@ -54,13 +55,16 @@
           <input type="text" value=" {{ K_Ort }} " name="ort" required>
         </td>
         <td>
-          <input type="date" value=" {{ K_GebDat }} " name="gebdat" required>
+          <input type="text" value=" {{ K_GebDat }} " class="birthday" name="gebdat" required>
         </td>
-
+      </tr>
     
     {{/each}}
   </table>
-
+  <script>
+    var dates = {{{dates}}};
+  </script>
+  <script src="test2.js"></script>
 </main>   
 
 {{> footer CopyrightText = "by Me"}}
