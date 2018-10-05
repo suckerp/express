@@ -1,0 +1,64 @@
+{{> navigation kunde }}
+
+<main>
+    {{#each KundenListe}}
+    <form action="daten_speichern" method="POST">
+        <div class="grid">
+            <div>
+                <label for="account"><b>Username</b></label>
+                <input type="text" value="{{ K_ACCOUNT }}" name="account" required>
+            </div>
+            <div>
+                <label for="password"><b>Passwort</b></label>
+                <input type="password" placeholder="Passwort eingeben" name="password" required>
+                </div>
+                <div>
+                <label for="password_wdh"><b>Passwort wiederholen</b></label>
+                <input type="password" placeholder="Passwort wiederholen" name="password_wdh" required>
+            </div>
+            <div>
+                <label for="anrede"><b>Anrede</b></label>
+                <select name="anrede" class="browser-default" required>
+                    {{#if frau }}
+                    <option selected value="Frau">Frau</option>
+                    <option value="Herr">Herr</option>
+                    {{else}}
+                    <option value="Frau">Frau</option>
+                    <option selected value="Herr">Herr</option>
+                    {{/if}}
+                </select> 
+            </div>
+            <div>
+                <label for="kname"><b>Kundenname</b></label>
+                <input type="text" value="{{ K_Name }}" name="kname" required>
+            </div>
+            <div>
+            <label for="gebdat"><b>Geburtsdatum</b></label>
+            <input type="text" value="{{ K_GebDat }}" class="birthday" name="gebdat" required>
+            </div>
+            <div>
+                <label for="strasse"><b>Straße</b></label>
+                <input type="text" value="{{ K_Strasse }}" name="strasse" required>            
+            </div>
+            <div>
+                <label for="plz"><b>Postleitzahl</b></label>
+                <input class="no-spinners" type="text" value="{{ K_PLZ }}" name="plz" min="00000" max="99999" pattern="[0-9]{5,5}" inputmode="numeric" required>
+            </div>
+            <div>
+                <label for="ort"><b>Wohnort</b></label>
+                <input type="text" value="{{ K_Ort }}" name="ort" required>
+            </div>
+            <div>
+            <button type="submit" class="btn waves-effect waves-light" name="speichernbtn"> Speichern
+            </button>
+            </div>
+        </div>
+    </form>
+    {{/each}}
+    <script>
+        var dates = {{{dates}}};
+    </script>
+    <script src="test2.js"></script>
+</main>   
+
+{{> footer CopyrightText = "by Me"}}

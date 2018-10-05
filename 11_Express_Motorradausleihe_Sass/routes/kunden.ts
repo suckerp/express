@@ -97,7 +97,6 @@ router.post('/login',(req,res)=>{
     const session = req.session as Express.Session
     //bei Daten Speichern wird die Session für 1 Woche gespeichert (1000*3600*24*7)
     const dauer = 604800000
-    let frau:boolean
     db.getCustomer(req.body.account, req.body.password)
         .then(results => {
             if (results.length) {
@@ -110,21 +109,68 @@ router.post('/login',(req,res)=>{
                     session.cookie.maxAge = dauer
                 }
                 const KundenListe = results.map(formatKundenliste)
-                //console.log(JSON.stringify(results[0].K_GebDat.toDateString()))
-                //let temp:Date[] = []
-                //temp.push(new Date(results[0].K_GebDat))
+                res.render('KundenListe',{
+                    kunde: session.kunde, 
+                    KundenListe
+                })
+            }
+            else{
+                res.render('login', {account_check: true})
+            }
+        })
+        .catch(error => {
+            res.json(error)
+        })
+})
+
+
+router.get('/daten_aendern',(req,res)=>{
+    const session = req.session as Express.Session
+    db.getCustomer(session.kunde.account, session.kunde.pass)
+        .then(results => {
+            if (results.length) {
+                const KundenListe = results.map(formatKundenliste)
                 if (KundenListe[0].K_Anrede == "Frau"){
                     KundenListe[0].frau = true
                 } else{
                     KundenListe[0].frau = false
                 }
+                KundenListe[0].daten = true
+                res.render('KundenDaten',{
+                    kunde: session.kunde, 
+                    KundenListe,
+                    dates:JSON.stringify(
+                        results[0].K_GebDat.toDateString()
+                    )})
+            }
+            else{
+                res.render('login', {account_check: true})
+            }
+        })
+        .catch(error => {
+            res.json(error)
+        })
+})
 
+
+router.post('/daten_speichern',(req,res)=>{
+    const session = req.session as Express.Session
+    console.log(req.body)
+    db.getCustomer(session.kunde.account, session.kunde.pass)
+        .then(results => {
+            if (results.length) {
+                const KundenListe = results.map(formatKundenliste)
+                if (KundenListe[0].K_Anrede == "Frau"){
+                    KundenListe[0].frau = true
+                } else{
+                    KundenListe[0].frau = false
+                }
+                KundenListe[0].daten = true
                 res.render('KundenListe',{
                     kunde: session.kunde, 
                     KundenListe,
                     dates:JSON.stringify(
                         results[0].K_GebDat.toDateString()
-                        //temp.map(x => x.toDateString())
                     )})
             }
             else{

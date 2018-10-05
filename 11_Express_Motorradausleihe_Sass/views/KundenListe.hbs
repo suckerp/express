@@ -22,43 +22,10 @@
         <td> {{ K_Ort }} </td>
         <td> {{ K_GebDat }} </td>
         <td>
-            <a type="button" class="btn waves-effect waves-light" name="ändernbtn" id="ändernbtn" href="daten_ändern/{{ K_ID }}">
-            Daten Ändern
+            <a type="button" class="btn waves-effect waves-light" name="ändernbtn" id="ändernbtn" href="daten_aendern">Ändern
             </a>
         </td>
     </tr>
-    <tr>
-        <td>
-          <input type="text" value=" {{ K_ACCOUNT }} " name="account" required>
-        </td>
-        <td>
-          <select name="anrede" class="browser-default" required>
-            {{#if frau }}
-            <option selected value="Frau">Frau</option>
-            <option value="Herr">Herr</option>
-            {{else}}
-            <option value="Frau">Frau</option>
-            <option selected value="Herr">Herr</option>
-            {{/if}}
-          </select> 
-        </td>
-        <td> 
-          <input type="text" value=" {{ K_Name }} " name="kname" required>
-        </td>
-        <td>
-          <input type="text" value=" {{ K_Strasse }} " name="strasse" required>
-        </td>
-        <td>
-          <input class="no-spinners" type="text" value=" {{ K_PLZ }} " name="plz" min="00000" max="99999" pattern="[0-9]{5,5}" inputmode="numeric" required>
-        </td>
-        <td>
-          <input type="text" value=" {{ K_Ort }} " name="ort" required>
-        </td>
-        <td>
-          <input type="text" value=" {{ K_GebDat }} " class="birthday" name="gebdat" required>
-        </td>
-      </tr>
-    
     {{/each}}
   </table>
   <script>
