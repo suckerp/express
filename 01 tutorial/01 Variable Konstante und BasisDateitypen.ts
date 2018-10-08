@@ -10,6 +10,7 @@ let halloWeltConst = "hallo Welt"
 
 halloWeltConst = "Hallo"
 
+
 halloWeltConst
 
 // Gültigkeitsbereich
