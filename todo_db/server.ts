@@ -1,66 +1,10 @@
-import mysql = require('mysql')
 import express = require('express')
+import bodyParser = require('body-parser');
+import { Todo } from './model/dbAccess'
+import { Request, Response, NextFunction } from 'express'
 
 
 
-export class Todo {
-
-    private readonly _connection = mysql.createConnection({
-        host: 'localhost',
-        user: 'root',
-        password: '',
-        database: 'todo',
-        timezone: 'Z'
-    })
-
-    getTodoList(){
-        const sqlString = 'select * from todolist'
-        return new Promise<any[]>((resolve, reject)=> {
-            this._connection.query(sqlString, (error, results:any[]) => {
-                if(error)
-                    reject(error)
-                else
-                    resolve(results)
-            })
-        })
-    }
-
-    setTodoEntry(task:string, pid:number){
-        const sqlString = `INSERT INTO todolist (TEXT,STATUS,PID) VALUES ("${task}",false,"${pid}")`
-        return new Promise<any[]>((resolve,reject)=> {
-            this._connection.query(sqlString, (error, results:any[])=> {
-                if (error)
-                    reject(error)
-                else
-                    resolve(results)
-            })
-        })
-    }
-
-    deleteTodoEntry(id:number){
-        const sqlString = `DELETE FROM todolist where TID = ?`
-        return new Promise<any[]>((resolve, reject)=> {
-            this._connection.query(sqlString, id, (error, results:any[]) => {
-                if (error)
-                    reject(error)
-                else
-                    resolve(results)
-            })
-        })
-    }
-
-    getPersons(){
-        const sqlString = `SELECT * from person`
-        return new Promise<any[]>((resolve, reject) => {
-            this._connection.query(sqlString, (error, results:any[]) => {
-                if (error)
-                    reject(error)
-                else
-                    resolve(results)
-            })
-        })
-    }
-}
 
 
 const app = express()
@@ -68,21 +12,34 @@ const app = express()
 const db = new Todo()
 
 
-app.get('/', (req,res)=>{
-    db.getTodoList()
-    .then(results => {
-        res.json(results)
-    })
+app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.json())
+
+
+app.use((req,res,next)=>{
+    next()
+})
+
+function AccessControlAllow(req:Request,res:Response,next:NextFunction){    
+    res.set('Access-Control-Allow-Origin','*')        
+    res.set('Access-Control-Allow-Methods','GET,POST,PUT')        
+    res.set('Access-Control-Allow-Headers','X-Requested-With,Content-Type,token,Authorization')
+    next()}
+
+    app.all('*', AccessControlAllow)
+
+
+app.post('/test', (req,res)=> {
+    console.log(req.body.firstName)
+    res.json(req.body)
 })
 
 
-app.get('/getpersons', (req,res)=> {
-    db.getPersons()
-    .then(results => {
+
+app.get('/todoperson', (req,res)=>{
+    db.getTodoListPerson(2)
+    .then(results=>{
         res.json(results)
-    })
-    .catch(error => {
-        res.json(error)
     })
 })
 
@@ -105,6 +62,25 @@ app.get('/deleteentry', (req,res)=>{
     })
     .catch(error => {
         res.json(error)
+    })
+})
+
+
+app.get('/getpersons', (req,res)=> {
+    db.getPersons()
+    .then(results => {
+        res.json(results)
+    })
+    .catch(error => {
+        res.json(error)
+    })
+})
+
+
+app.get('/', (req,res)=>{
+    db.getTodoList()
+    .then(results => {
+        res.json(results)
     })
 })
 
