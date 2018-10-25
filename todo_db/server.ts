@@ -1,6 +1,6 @@
 import express = require('express')
 import bodyParser = require('body-parser');
-import { Todo } from './model/dbAccess'
+import { Todo, getTable, insertTable } from './model/dbAccess'
 import { Request, Response, NextFunction } from 'express'
 
 
@@ -35,7 +35,14 @@ app.post('/test', (req,res)=> {
 })
 
 
+app.post('/select', (req,res)=> {
+    db.getTable(req.body as getTable)
+        .then(results=>res.json(results))
+        .catch(error=>res.status(500).json(error))
+})
 
+
+/*
 app.get('/todoperson', (req,res)=>{
     db.getTodoListPerson(2)
     .then(results=>{
@@ -82,7 +89,7 @@ app.get('/', (req,res)=>{
     .then(results => {
         res.json(results)
     })
-})
+})*/
 
 
 const port = 3000

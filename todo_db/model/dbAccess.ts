@@ -1,8 +1,71 @@
 import mysql = require('mysql')
+import { createPool, Pool } from 'mysql'
+
+export type Person = {
+    pid: number,
+    firstName:string,
+    lastName: string
+}
+
+export type TodoList = {
+    tid: number,
+    text: string,
+    status: boolean,
+    pid: number
+}
+
+export type getTable = {
+    table: string,
+    cols: string,
+    wheres: string
+}
+
+export type insertTable = {
+    table: string,
+    mask: string,
+    values: string
+}
 
 
 export class Todo {
 
+    private pool:Pool
+
+    constructor(){
+        this.pool = createPool({
+            host: 'localhost',
+            user: 'root',
+            password: '',
+            database: 'todo',
+            connectionLimit: 100,
+            timezone: 'Z'
+        })
+    }
+
+    PromiseAnswer<T>(Sql:any){
+        return new Promise<T>((resolve,reject)=>{
+            this.pool.query(Sql,(error,result)=> {
+                if (error)
+                    reject(error)
+                else
+                    resolve(result)
+            })
+        })
+    }
+
+    getTable(getTable:getTable){
+        let sql = `select ${getTable.cols} from ${getTable.table}`
+        if (getTable.wheres) sql+=`where ${getTable.wheres};`
+        else sql+=`;`
+        return this.PromiseAnswer(sql)
+    }
+
+    insertTable(insertTable:insertTable) {
+        let sql = `insert into ${insertTable.table}`
+    }
+
+
+/*
     private readonly _connection = mysql.createConnection({
         host: 'localhost',
         user: 'root',
@@ -88,4 +151,6 @@ export class Todo {
             })
         })
     }
+
+    */
 }
