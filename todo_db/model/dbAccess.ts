@@ -20,7 +20,7 @@ export type getTable = {
     wheres: string
 }
 
-export type insertTable = {
+export type insertIntoTable = {
     table: string,
     mask: string,
     values: string
@@ -60,9 +60,17 @@ export class Todo {
         return this.PromiseAnswer(sql)
     }
 
-    insertTable(insertTable:insertTable) {
-        let sql = `insert into ${insertTable.table}`
+    insertIntoTable(insertIntoTable:insertIntoTable) {
+        let sql = `insert into ${insertIntoTable.table} ${insertIntoTable.mask} values 
+        ${insertIntoTable.values}`
+        return this.PromiseAnswer(sql)
     }
+
+    deleteFromTodo(getTable:getTable) {
+        let sql = `DELETE FROM ${getTable.table} WHERE ${getTable.wheres};`
+        return this.PromiseAnswer(sql)
+    }
+        
 
 
 /*

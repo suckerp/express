@@ -1,10 +1,7 @@
 import express = require('express')
 import bodyParser = require('body-parser');
-import { Todo, getTable, insertTable } from './model/dbAccess'
+import { Todo, getTable, insertIntoTable } from './model/dbAccess'
 import { Request, Response, NextFunction } from 'express'
-
-
-
 
 
 const app = express()
@@ -30,7 +27,6 @@ function AccessControlAllow(req:Request,res:Response,next:NextFunction){
 
 
 app.post('/test', (req,res)=> {
-    console.log(req.body.firstName)
     res.json(req.body)
 })
 
@@ -41,6 +37,24 @@ app.post('/select', (req,res)=> {
         .catch(error=>res.status(500).json(error))
 })
 
+
+app.post('/delete',(req, res) => {
+    db.deleteFromTodo(req.body as getTable)
+        .then(x=>res.status(200).json("OK"))
+        .catch(err=>res.status(500).json(err))
+})
+
+app.post('/insert',(req, res) => {
+    db.insertIntoTable(req.body as insertIntoTable)
+        .then(x=>{
+            res.status(200).json("OK")
+            console.log("Ok")
+        })
+        .catch(err=>{
+            res.status(500).json(err)
+            console.log(err)
+        })
+})
 
 /*
 app.get('/todoperson', (req,res)=>{
