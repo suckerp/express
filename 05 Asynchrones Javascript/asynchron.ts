@@ -1,5 +1,3 @@
-import { promises } from "fs";
-import { resolve } from "dns";
 
 function callback(){
     console.log("eins")

@@ -21,9 +21,55 @@ function plusMitCallback(summand1:number, summand2:number, callback:Function){
     const summe = summand1 + summand2
     callback(summe)
 }
-console.log(plusMitCallback(2,2, x=> {
+
+function gebeSummeAus(x){
     console.log(x)
-}))
+}
+
+plusMitCallback(2,2, x=> {
+    console.log(x)
+})
+
+
+
+plusMitCallback(2, 2, summe => {
+    plusMitCallback(summe, 2, summe => {
+        plusMitCallback(summe, 4, summe => {
+            console.log(summe)
+        })
+    })
+})
+
+
+function plus_Mit_Promise(summand1:number, summand2:number){
+    return new Promise<number>((resolve, reject)=> {
+        if(typeof summand1 === "number" && typeof summand2 == "number"){
+            resolve(summand1 + summand2)
+        } else{
+            reject("error")
+        }
+    })
+}
+
+plus_Mit_Promise(2,2)
+    .then(x=>{
+         console.log(x)
+    })
+       
+plus_Mit_Promise(2,2)
+    .then(summe =>plus_Mit_Promise(summe,2))
+    .then(summe =>plus_Mit_Promise(summe,2))
+    .then(summe =>plus_Mit_Promise(summe,2))
+    .then(summe =>plus_Mit_Promise(summe,2))
+    .then(summe =>plus_Mit_Promise(summe,2))
+    .then(summe =>{
+        console.log(summe)
+    })
+    .catch(e=>{
+        console.log(e)
+    })
+
+
 
 
 function plusMitCallbackR(summand1:number, summand2:number, callback:Function){
@@ -33,9 +79,10 @@ function plusMitCallbackR(summand1:number, summand2:number, callback:Function){
     }, 1000);
     
 }
-console.log(plusMitCallbackR(2,2, x=> {
+plusMitCallbackR(2,2, x=> {
     console.log(x)
-}))
+})
+
 
 
 
